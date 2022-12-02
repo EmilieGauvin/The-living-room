@@ -14,8 +14,6 @@ export default [
         type: 'texture',
         path: '../static/textures/background.jpg'
     }
-    
-
 ]
 
 

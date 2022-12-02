@@ -13,6 +13,7 @@ import Stats from 'stats.js'
 let instance = null
 
 export default class Experience {
+
     constructor(canvas) {
         if (instance) {
             return instance
@@ -22,7 +23,7 @@ export default class Experience {
         //Global acces
         window.experience = this
 
-        //Stats, run 'npm install --save stats.js'
+        //Stats
         this.statsActive = window.location.hash === '#stats'
         if (this.statsActive) {
             this.stats = new Stats()
@@ -55,15 +56,7 @@ export default class Experience {
         this.time.on('tick', () => {
             this.update()
         })
-
     }
-
-
-    color6() {
-        if (this.world.objectsAnimation) this.world.objectsAnimation.color6()
-        this.renderer.color6()
-    }
-
 
     resize() {
         this.camera.resize()

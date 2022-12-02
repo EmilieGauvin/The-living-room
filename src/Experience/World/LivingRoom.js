@@ -1,5 +1,5 @@
 import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
-import Experience from "../../Experience";
+import Experience from "../Experience";
 import drapesVertexShader from './shaders/drapes/vertex.glsl'
 import drapesFragmentShader from './shaders/drapes/fragment.glsl'
 import fakeGodRayVertexShader from './shaders/fakeGodRay/vertex.glsl'
@@ -48,29 +48,25 @@ export default class LivingRoom
         this.bakedMesh = this.model.children.find((child) => child.name === 'baked_livingRoom')
         this.bakedMesh.material = new THREE.MeshBasicMaterial()
         this.bakedMesh.material.map = this.livingRoomTexture
-        // this.bakedMesh.material.metalness=0
-        // this.bakedMesh.material.roughness =1
 
         // lightMaterials
         this.lightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 })
         this.lightsMesh = this.model.children.find((child) => child.name === 'lights')
         this.lightsMesh.material = this.lightMaterial
 
-        
         //Glass Materials
-        this.glassMaterial = new THREE.MeshBasicMaterial({ 
+        this.glassMaterial = new THREE.MeshBasicMaterial({
             color: '#fffff5',
             transparent: true,
-            opacity: 0.2
+            opacity: 0.5
         })
-        this.glassMesh = this.model.children.find((child) => child.name === 'glass')
+        this.glassMesh = this.model.children.find((child) => child.name === 'glasses')
         this.glassMesh.material = this.glassMaterial
 
         //drapes Materials
         this.drapeMaterial = new THREE.ShaderMaterial({
             vertexShader: drapesVertexShader,
             fragmentShader: drapesFragmentShader,
-            // blending: THREE.AdditiveBlending,
             depthWrite: false,
             uniforms:
             {
@@ -78,12 +74,11 @@ export default class LivingRoom
                 uBigWavesElevation: { value: new THREE.Vector2(0.10, 0.2) },
                 uBigWavesFrequency: { value: new THREE.Vector2(100, 1.5) },
                 uBigWavesSpeed: { value: 0.003 },
-                uScaleRatio: { value : this.scaleRatio}
+                uScaleRatio: { value: this.scaleRatio }
             },
             transparent: true
         })
-
-        this.drapesMesh = this.model.children.find((child) => child.name === 'rideau')
+        this.drapesMesh = this.model.children.find((child) => child.name === 'drapes')
         this.drapesMesh.material = this.drapeMaterial
 
         ///Debug
@@ -114,13 +109,12 @@ export default class LivingRoom
             uniforms:
             {
                 uGlowColor: { value: new THREE.Color(0xffffff) },
-                uBlurOffset: { value: 0.93},
-                uAlphaBase: { value: 0.35},
-                uAlphaRays: { value: 0.15},
-                uFrequency: { value: 1.0}
+                uBlurOffset: { value: 0.93 },
+                uAlphaBase: { value: 0.35 },
+                uAlphaRays: { value: 0.15 },
+                uFrequency: { value: 1.0 }
             }
         })
-
         this.fakeGodRayMesh1 = this.model.children.find((child) => child.name === 'godray1')
         this.fakeGodRayMesh1.material = this.fakeGodRayMaterial1
 
@@ -129,22 +123,19 @@ export default class LivingRoom
             side: THREE.FrontSide,
             transparent: true,
             depthWrite: false,
-
             vertexShader: fakeGodRayVertexShader,
             fragmentShader: fakeGodRayFragmentShader,
             uniforms:
             {
-                uGlowColor: { value: new THREE.Color('#fffcf0') },
-                uBlurOffset: { value: 1.0},
-                uAlphaBase: { value: 0.3},
-                uAlphaRays: { value: 0.35},
-                uFrequency: { value: 0.87}
+                uGlowColor: { value: new THREE.Color('#fff4cc') },
+                uBlurOffset: { value: 1.0 },
+                uAlphaBase: { value: 0.3 },
+                uAlphaRays: { value: 0.35 },
+                uFrequency: { value: 0.87 }
             }
         })
-
         this.fakeGodRayMesh1bis = this.model.children.find((child) => child.name === 'godray1001')
         this.fakeGodRayMesh1bis.material = this.fakeGodRayMaterial1bis
-
 
         //Fake god ray2
         this.fakeGodRayMaterial2 = new THREE.ShaderMaterial({
@@ -157,13 +148,12 @@ export default class LivingRoom
             uniforms:
             {
                 uGlowColor: { value: new THREE.Color(0xffffff) },
-                uBlurOffset: { value: 0.96},
-                uAlphaBase: { value: 0.20},
-                uAlphaRays: { value: 0.3},
-                uFrequency: { value: 1.62}
+                uBlurOffset: { value: 0.96 },
+                uAlphaBase: { value: 0.20 },
+                uAlphaRays: { value: 0.3 },
+                uFrequency: { value: 1.62 }
             }
         })
-
         this.fakeGodRayMesh2 = this.model.children.find((child) => child.name === 'godray2')
         this.fakeGodRayMesh2.material = this.fakeGodRayMaterial2
 
@@ -171,22 +161,20 @@ export default class LivingRoom
         this.fakeGodRayMaterial2bis = new THREE.ShaderMaterial({
             side: THREE.FrontSide,
             transparent: true,
-                        depthWrite: false,
-
+            depthWrite: false,
             vertexShader: fakeGodRayVertexShader,
             fragmentShader: fakeGodRayFragmentShader,
             uniforms:
             {
                 uGlowColor: { value: new THREE.Color('#fffcf0') },
-                uBlurOffset: { value: 1.0},
-                uAlphaBase: { value: 0.50},
-                uAlphaRays: { value: 0.35},
-                uFrequency: { value: 1.78}
+                uBlurOffset: { value: 1.0 },
+                uAlphaBase: { value: 0.50 },
+                uAlphaRays: { value: 0.35 },
+                uFrequency: { value: 1.78 }
             }
         })
         this.fakeGodRayMesh2bis = this.model.children.find((child) => child.name === 'godray2001')
         this.fakeGodRayMesh2bis.material = this.fakeGodRayMaterial2bis
-
 
         //Fake god ray3
         this.fakeGodRayMaterial3 = new THREE.ShaderMaterial({
@@ -198,14 +186,13 @@ export default class LivingRoom
             fragmentShader: fakeGodRayFragmentShader,
             uniforms:
             {
-                uGlowColor: { value: new THREE.Color(0xffffff) },
-                uBlurOffset: { value: 0.7},
-                uAlphaBase: { value: 0.20},
-                uAlphaRays: { value: 0.1},
-                uFrequency: { value: 1.0}
+                uGlowColor: { value: new THREE.Color('#fff4cc') },
+                uBlurOffset: { value: 0.7 },
+                uAlphaBase: { value: 0.20 },
+                uAlphaRays: { value: 0.1 },
+                uFrequency: { value: 1.0 }
             }
         })
-
         this.fakeGodRayMesh3 = this.model.children.find((child) => child.name === 'godray3')
         this.fakeGodRayMesh3.material = this.fakeGodRayMaterial3
 
@@ -218,17 +205,15 @@ export default class LivingRoom
             fragmentShader: fakeGodRayFragmentShader,
             uniforms:
             {
-                uGlowColor: { value: new THREE.Color('#fffcf0') },
-                uBlurOffset: { value: 1},
-                uAlphaBase: { value: 0.45},
-                uAlphaRays: { value: 0.25},
-                uFrequency: { value: 1.27}
+                uGlowColor: { value: new THREE.Color('#fff4cc') },
+                uBlurOffset: { value: 1 },
+                uAlphaBase: { value: 0.45 },
+                uAlphaRays: { value: 0.25 },
+                uFrequency: { value: 1.27 }
             }
         })
-
         this.fakeGodRayMesh3bis = this.model.children.find((child) => child.name === 'godray3001')
         this.fakeGodRayMesh3bis.material = this.fakeGodRayMaterial3bis
-
     }
 
     update()

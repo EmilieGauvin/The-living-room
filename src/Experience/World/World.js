@@ -1,13 +1,10 @@
-import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
 import Experience from "../Experience";
-import LivingRoom from "./ProjectPage/LivingRoom";
+import LivingRoom from "./LivingRoom";
 import Background from './Background';
 
 
-export default class World
-{
-    constructor()
-    {
+export default class World {
+    constructor() {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.camera = this.experience.camera.instance
@@ -15,20 +12,17 @@ export default class World
         this.renderer = this.experience.renderer
         this.resources = this.experience.resources
 
-        this.resources.on('ready', () =>
-        {
+        this.resources.on('ready', () => {
             this.livingRoom = new LivingRoom()
-            this.background= new Background()
+            this.background = new Background()
         })
     }
 
-    update()
-    {
+    update() {
         if (this.livingRoom) this.livingRoom.update()
     }
-
 }
-            
+
 
 
 
