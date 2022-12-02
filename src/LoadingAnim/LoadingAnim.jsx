@@ -1,5 +1,5 @@
 import "./LoadingAnim.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 
 export default function LoadingAnim() {
@@ -28,9 +28,6 @@ export default function LoadingAnim() {
               </div>
             </div>
         </div>
-        {/* <div className={showInstuction === false ? 'instruction hideInstuction' : 'instruction showInstuction'}> 
-        <p><i>{english === true ? 'Grab the shapes and match them to the drawing' : 'Déplace les formes dans les dessins correspondants'}</i></p>
-        </div> */}
   </div>
 );
 }
