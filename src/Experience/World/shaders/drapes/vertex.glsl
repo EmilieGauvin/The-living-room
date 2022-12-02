@@ -2,18 +2,17 @@ uniform vec2 uBigWavesElevation;
 uniform vec2 uBigWavesFrequency;
 uniform float uTime;
 uniform float uBigWavesSpeed;
-uniform float uScaleRatio;
 
 void main()
 {
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
-    float speed = uBigWavesSpeed;
-
+    float speed = uBigWavesSpeed ;
+    float uScaleRatio = 1.0;
     // Elevation
     float elevationX = 
                 sin(modelPosition.x * uBigWavesFrequency.x / uScaleRatio) * (1.0 - uv.y)
-                * uBigWavesElevation.x * uScaleRatio
+                * uBigWavesElevation.x 
                 + uv.y * 0.3 * uScaleRatio
                 + sin(modelPosition.x * uBigWavesFrequency.y * 10.0 / uScaleRatio + uTime * speed * 0.5 ) * uv.y *0.2
                 * uScaleRatio

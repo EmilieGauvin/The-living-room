@@ -58,7 +58,7 @@ export default class LivingRoom
         this.glassMaterial = new THREE.MeshBasicMaterial({
             color: '#fffff5',
             transparent: true,
-            opacity: 0.5
+            opacity: 0.1
         })
         this.glassMesh = this.model.children.find((child) => child.name === 'glasses')
         this.glassMesh.material = this.glassMaterial
@@ -110,32 +110,13 @@ export default class LivingRoom
             {
                 uGlowColor: { value: new THREE.Color(0xffffff) },
                 uBlurOffset: { value: 0.93 },
-                uAlphaBase: { value: 0.35 },
-                uAlphaRays: { value: 0.15 },
-                uFrequency: { value: 1.0 }
+                uAlphaBase: { value: 0.4 },
+                uAlphaRays: { value: 0.10 },
+                uFrequency: { value: 0.3 }
             }
         })
         this.fakeGodRayMesh1 = this.model.children.find((child) => child.name === 'godray1')
         this.fakeGodRayMesh1.material = this.fakeGodRayMaterial1
-
-        //Fake god ray 1bis
-        this.fakeGodRayMaterial1bis = new THREE.ShaderMaterial({
-            side: THREE.FrontSide,
-            transparent: true,
-            depthWrite: false,
-            vertexShader: fakeGodRayVertexShader,
-            fragmentShader: fakeGodRayFragmentShader,
-            uniforms:
-            {
-                uGlowColor: { value: new THREE.Color('#fff4cc') },
-                uBlurOffset: { value: 1.0 },
-                uAlphaBase: { value: 0.3 },
-                uAlphaRays: { value: 0.35 },
-                uFrequency: { value: 0.87 }
-            }
-        })
-        this.fakeGodRayMesh1bis = this.model.children.find((child) => child.name === 'godray1001')
-        this.fakeGodRayMesh1bis.material = this.fakeGodRayMaterial1bis
 
         //Fake god ray2
         this.fakeGodRayMaterial2 = new THREE.ShaderMaterial({
@@ -157,25 +138,6 @@ export default class LivingRoom
         this.fakeGodRayMesh2 = this.model.children.find((child) => child.name === 'godray2')
         this.fakeGodRayMesh2.material = this.fakeGodRayMaterial2
 
-        //Fake god ray2bis
-        this.fakeGodRayMaterial2bis = new THREE.ShaderMaterial({
-            side: THREE.FrontSide,
-            transparent: true,
-            depthWrite: false,
-            vertexShader: fakeGodRayVertexShader,
-            fragmentShader: fakeGodRayFragmentShader,
-            uniforms:
-            {
-                uGlowColor: { value: new THREE.Color('#fffcf0') },
-                uBlurOffset: { value: 1.0 },
-                uAlphaBase: { value: 0.50 },
-                uAlphaRays: { value: 0.35 },
-                uFrequency: { value: 1.78 }
-            }
-        })
-        this.fakeGodRayMesh2bis = this.model.children.find((child) => child.name === 'godray2001')
-        this.fakeGodRayMesh2bis.material = this.fakeGodRayMaterial2bis
-
         //Fake god ray3
         this.fakeGodRayMaterial3 = new THREE.ShaderMaterial({
             side: THREE.FrontSide,
@@ -186,34 +148,15 @@ export default class LivingRoom
             fragmentShader: fakeGodRayFragmentShader,
             uniforms:
             {
-                uGlowColor: { value: new THREE.Color('#fff4cc') },
-                uBlurOffset: { value: 0.7 },
-                uAlphaBase: { value: 0.20 },
-                uAlphaRays: { value: 0.1 },
-                uFrequency: { value: 1.0 }
+                uGlowColor: { value: new THREE.Color(0xffffff) },
+                uBlurOffset: { value: 0.9 },
+                uAlphaBase: { value: 0.55 },
+                uAlphaRays: { value: 0.3 },
+                uFrequency: { value: 0.5 }
             }
         })
         this.fakeGodRayMesh3 = this.model.children.find((child) => child.name === 'godray3')
         this.fakeGodRayMesh3.material = this.fakeGodRayMaterial3
-
-        //Fake god ray3bis
-        this.fakeGodRayMaterial3bis = new THREE.ShaderMaterial({
-            side: THREE.FrontSide,
-            transparent: true,
-            depthWrite: false,
-            vertexShader: fakeGodRayVertexShader,
-            fragmentShader: fakeGodRayFragmentShader,
-            uniforms:
-            {
-                uGlowColor: { value: new THREE.Color('#fff4cc') },
-                uBlurOffset: { value: 1 },
-                uAlphaBase: { value: 0.45 },
-                uAlphaRays: { value: 0.25 },
-                uFrequency: { value: 1.27 }
-            }
-        })
-        this.fakeGodRayMesh3bis = this.model.children.find((child) => child.name === 'godray3001')
-        this.fakeGodRayMesh3bis.material = this.fakeGodRayMaterial3bis
     }
 
     update()
